@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}
+    Home Page
+{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <h1>Hello, {% if current_user.is_authenticated %}{{ current_user.firstname }}{% else %}Stranger{% endif %}!</h1>
+    </div>
+    <div>
+        <img src="C:\Users\DIRECTOR\Desktop\Python\Python files\TingoApp\app\static\tingoimage.jpeg" alt="">
+    </div>
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-dark" style="color:tomato">
+        <h2 display-4 font-weight-normal>
+            Welcome to TingoFarmers App - Nigeria's Number One AgriFinTech Company. 
+        </h2>
+    </div>    
+    <div class="row bg-dark" style="margin-top:20px; margin-left: 20px; margin-right: 20px;">
+        <div class="col-8">
+            <h2 class="lead-font-weight-normal">Gain Access to Top-level Agriservices wherever you are.</h2>
+            <div class="product-device product-device-2 box-shadow d-none d-md-block ">
+                <h6>Own a wallet and access financial services anywhere</h6>
+                <h6>Get connected to Producers and Buyers of Agricultural Products and Services </h6>
+                <h6>Get Access to affordable loans, farm input and supplies</h6>
+                <h6>Get Free training and agricultural extension services</h6>
+            </div>
+        <div class="col-4">
+            <div>
+                <h3 class="lead-font-weight-normal text-center"><a href="{{ url_for('register') }}">Join Us for FREE!</a></h3>
+            </div>
+            <div class="lead-font-weight-normal">
+                <p><a href="{{ url_for('login') }}">Log in</a> to gain access our services.</p>
+            </div>
+            <div class="lead-font-weight-normal text-center">
+                <h3><a href="{{ url_for('.market') }}">Check The Market</a></h3>
+            </div>
+        </div>
+        
+    </div>
+
+    
+
+{% endblock %}

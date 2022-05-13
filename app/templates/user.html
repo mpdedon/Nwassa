@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% import "_macros.html" as macros %}
+
+{% block title %}Tingo Farmers' App - {{ current_user.firstname }}{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <img class="img-rounded profile-thumbnail" src="{{ farmer.gravatar(size=256) }}">
+    <div class="profile-header">
+        <h1>{{ user.firstname }}</h1>
+        {% if user.cooperative or user.location %}
+        <p>
+            {% if user.cooperative %}{{ user.cooperative.name }}<br>{% endif %}
+            {% if user.location %}
+                from <a href="http://maps.google.com/?q={{ farmer.location }}">{{ user.location }}</a><br>
+            {% endif %}
+        </p>
+        {% endif %}
+        <p class="nav item">
+            <a class="nav-link" style="color: lawngreen; font-weight: bold;">
+                <i class="fas fa-coins"></i>
+                {{ current_user.budget }}
+            </a>
+
+        </p>
+        {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
+        <p>Member since {{ moment(user.member_since).format('L') }}. Last seen {{ moment(user.last_seen).fromNow() }}.</p>
+        <p>{{ current_user.products.count() }} products posted.</p>
+        <p>
+            {% if farmer == current_user %}
+            <a class="btn btn-default" href="{{ url_for('.edit_profile') }}">Edit Profile</a>
+            {% endif %}
+            {% if farmer == current_user %}
+            <a class="btn btn-default" href="{{ url_for('.farmer_add_product') }}">Add a Product</a>
+            {% endif %}
+            {% if farmer == current_user %}
+            <a class="btn btn-default" href="{{ url_for('.farmer_update_product') }}">Update a Product</a>
+            {% endif %}
+            {% if farmer == current_user %}
+            <a class="btn btn-default" href="{{ url_for('.farmer_delete_product') }}">Delete a Product</a>
+            {% endif %}
+        </p>
+    </div>
+    <div>
+        <h3>Products by {{ farmer.username }}</h3>
+        {% include '_products.html' %}
+        {% if pagination %}
+        <div class="pagination">
+            {{ macros.pagination_widget(pagination, '.farmer', username=farmer.username) }}
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

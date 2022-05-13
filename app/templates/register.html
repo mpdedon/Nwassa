@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}
+    Register Page
+{% endblock %}
+
+{% block content %}
+<body class="text-center">
+    <div class="container">
+        <form method="POST" class="form-register" style="color:white">
+            {{ form.hidden_tag() }}
+            <img class="mb-4" src="C:\Users\DIRECTOR\Desktop\Python\Python files\TingoApp\app\static\tingoimage.jpeg">
+            <h1 class="h3 mb-3 font-weight-normal">
+                Please Create your Account.
+            </h1>
+            <br>
+            {{ form.email.label() }}
+            {{ form.email(class="form-control", placeholder="Your Email") }}
+
+            {{ form.password.label() }}
+            {{ form.password(class="form-control", placeholder="Input a Secret Password") }}
+
+            {{ form.password2.label() }}
+            {{ form.password2(class="form-control", placeholder="Confirm Password") }}
+                        
+            {{ form.firstname.label() }}
+            {{ form.firstname(class="form-control", placeholder="Your First Name") }}
+
+            {{ form.lastname.label() }}
+            {{ form.lastname(class="form-control", placeholder="Your Last Name") }}
+
+            {{ form.mobile_no.label() }}
+            {{ form.mobile_no(class="form-control", placeholder="Your Mobile Number") }}
+
+            {{ form.location.label() }}
+            {{ form.location(class="form-control", placeholder="Your Current Location") }}
+
+            <br>
+            {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+            <br>
+            <div class="checkbox mb-3">
+                <h6>Have an Account Already?</h6>
+                <a class="btn btn-sm btn-secondary" href="{{ url_for('login') }}">Login</a>
+            </div>
+            
+
+        </form>
+    </div>
+</body>
+{% endblock %}
